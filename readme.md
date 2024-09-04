@@ -94,6 +94,7 @@ if (stage != COMPLETE && stage != GIVE_UP) {
 ```
 
 Onde ainda baseado no **stage** é definido se será exibido o botão de Clicks e o botão de desistencia.
+
 Ainda no mesmo trecho é preenchido as váriaveis de controle que definem se vão ser exibidos 
 as mensagens de desistencia ou finalização do jogo(vitória).
 Que são chamados no seguinte bloco abaixo
@@ -160,7 +161,8 @@ fun GiveUpDialog(onPlayAgain: () -> Unit, onExit: () -> Unit) {
 
 ```
 Temos dois botões principais: **onClick=onPlayAgain** e **onClick=onExit**
-As duas invocam funções Lambda sem retorno e nelas na chamada é resetado o jogo
+As duas invocam funções Lambda sem retorno e na chamada é definido o que
+sera feito com o jogo
 como segue este exemplo:
 
 ```
@@ -178,7 +180,7 @@ como segue este exemplo:
 **onPlayAgain** redefine os clicks para 0 e o estagio do jogo para inicial
 resetando o game
 
-A seguir temos a função que foi criada de forma generica
+A seguir temos a função que foram criadas de forma generica
 para mostrar as imagens durante a jornada do usuario:
 
 ```
