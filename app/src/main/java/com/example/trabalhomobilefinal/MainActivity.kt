@@ -34,7 +34,6 @@ import com.example.trabalhomobilefinal.Stage.INITIAL
 import com.example.trabalhomobilefinal.Stage.MID
 import com.example.trabalhomobilefinal.ui.theme.TrabalhoMobileFinalTheme
 import kotlin.random.Random
-import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 
 // MainActivity é a atividade principal do aplicativo
@@ -56,13 +55,12 @@ class MainActivity : ComponentActivity() {
 // Composable function que define o layout e a lógica do aplicativo
 @Composable
 fun JourneyApp(onExit: () -> Unit) {
-    val bundle = Bundle()
     // Declaração de variáveis de estado
     var clicks by rememberSaveable  { mutableStateOf(0) } // Conta o número de cliques
-    var targetClicks by remember { mutableStateOf(Random.nextInt(1, 51)) } // Define um número aleatório de cliques alvo
-    var stage by remember { mutableStateOf(Stage.INITIAL) } // Controla o estágio atual do jogo
-    var showDialog by remember { mutableStateOf(false) } // Controla a exibição do diálogo de vitória
-    var showGiveUpDialog by remember { mutableStateOf(false) } // Controla a exibição do diálogo de desistência
+    var targetClicks by rememberSaveable { mutableStateOf(Random.nextInt(1, 51)) } // Define um número aleatório de cliques alvo
+    var stage by rememberSaveable { mutableStateOf(Stage.INITIAL) } // Controla o estágio atual do jogo
+    var showDialog by rememberSaveable { mutableStateOf(false) } // Controla a exibição do diálogo de vitória
+    var showGiveUpDialog by rememberSaveable { mutableStateOf(false) } // Controla a exibição do diálogo de desistência
 
     // Estrutura da UI usando uma coluna centralizada
     Column(
@@ -97,12 +95,10 @@ fun JourneyApp(onExit: () -> Unit) {
                 }
             }
             GIVE_UP -> {
-                ImageStage(R.drawable.baumal, "Desistência")
+
                 if (!showGiveUpDialog) { // Se o estágio é desistência e o diálogo ainda não foi mostrado
                     showGiveUpDialog = true // Exibe o diálogo de desistência
                 }
-
-                Text(text = "Textosiohjioasdhfbsdjibfjoisdbfrsdjiofgbojsdbuof")
 
             }
         }
@@ -158,17 +154,6 @@ fun JourneyApp(onExit: () -> Unit) {
                 onExit = onExit
             )
         }
-    }
-}
-
-fun onSaveInstanceState(extra: Bundle) {
-    extra.putInt("count",extra.getInt("count"))
-}
-
-
-fun onCreate(extra: Bundle?) {
-    if (extra != null) {
-        val value = extra.getInt("count")
     }
 }
 
